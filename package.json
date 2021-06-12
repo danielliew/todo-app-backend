@@ -6,7 +6,9 @@
   "scripts": {
     "start": "ts-node-dev server.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "test:chrome": "cypress run --browser chrome"
+    "test:chrome": "cypress run --browser chrome",
+    "combine:report": "mochawesome-merge ./mochawesome-report/*.json -o index.json",
+    "generate:report": "marge index.json --reportDir public_html --assetsDir public_html/assets --reportPageTitle index.html"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +17,9 @@
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.12",
     "@types/node": "^15.12.2",
+    "mochawesome": "^6.2.2",
+    "mochawesome-merge": "^4.2.0",
+    "mochawesome-report-generator": "^5.2.0",
     "ts-node-dev": "^1.1.6"
   },
   "dependencies": {
