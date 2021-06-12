@@ -14,7 +14,7 @@ on:
 
 jobs:
   cypress-test:
-    if: ${{ false }}
+    # if: ${{ false }}
     name: Run on Chrome 83
     runs-on: ubuntu-latest
     container: cypress/browsers:node12.18.0-chrome83-ff77
