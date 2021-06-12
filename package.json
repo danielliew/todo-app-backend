@@ -1,0 +1,26 @@
+{
+  "name": "backend-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node-dev server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:chrome": "cypress run --browser chrome"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.12",
+    "@types/node": "^15.12.2",
+    "ts-node-dev": "^1.1.6"
+  },
+  "dependencies": {
+    "cypress": "^7.5.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "typescript": "^4.3.2"
+  }
+}
