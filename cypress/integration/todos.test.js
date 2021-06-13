@@ -1,8 +1,14 @@
 /// <reference types="cypress" />
 
-describe("GET /todos", () => {
+describe("GET /todos/todo", () => {
   it("returns array", () => {
-    cy.request("/todos").its("body").should("be.an", "array");
+    cy.request("/todos/todo").its("body").should("be.an", "array");
+  });
+});
+
+describe("GET /todos/completed", () => {
+  it("returns array", () => {
+    cy.request("/todos/completed").its("body").should("be.an", "array");
   });
 });
 

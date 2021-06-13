@@ -5,7 +5,12 @@ const router = Router();
 
 const todos: FakeTodoDb = new FakeTodoDb();
 
-router.get("/", (req, res) => res.json(todos.select(undefined)));
+router.get("/todo", (req, res) =>
+  res.json(todos.select(undefined).filter((t) => !t.complete))
+);
+router.get("/completed", (req, res) =>
+  res.json(todos.select(undefined).filter((t) => t.complete))
+);
 router.get("/:id", (req, res) => res.json(todos.select(req.params.id)));
 router.post("/", (req, res) => res.json(todos.insert(req.body)));
 router.put("/:id", (req, res) =>

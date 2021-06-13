@@ -1,7 +1,11 @@
+import uuid from "uuid";
+
 interface Todo {
   id: string;
   title: string;
   body?: string;
+  complete: boolean;
+  timestamp: string;
 }
 
 export class FakeTodoDb {
@@ -17,7 +21,13 @@ export class FakeTodoDb {
 
   insert(t: Todo) {
     try {
-      this.store.push(t);
+      this.store.push({
+        id: uuid.v4(),
+        title: t.title,
+        body: t.body,
+        complete: false,
+        timestamp: new Date().toLocaleString(),
+      });
       return { success: true };
     } catch (error) {
       return { success: false };
