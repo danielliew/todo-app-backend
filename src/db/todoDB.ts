@@ -9,7 +9,15 @@ interface Todo {
 }
 
 export class FakeTodoDb {
-  store: Todo[] = [];
+  store: Todo[] = [
+    {
+      title: "Buy lunch",
+      body: "Happy meal",
+      timestamp: "Today",
+      id: "0",
+      complete: false,
+    },
+  ];
 
   constructor() {}
 
