@@ -4,11 +4,21 @@ describe("GET /todos/todo", () => {
   it("returns array", () => {
     cy.request("/todos/todo").its("body").should("be.an", "array");
   });
+  it("contains only incomplete todos", () => {
+    cy.request("/todos/todo")
+      .its("body")
+      .each((item) => expect(item.complete).to.equal(false));
+  });
 });
 
 describe("GET /todos/completed", () => {
   it("returns array", () => {
     cy.request("/todos/completed").its("body").should("be.an", "array");
+  });
+  it("contains only complete todos", () => {
+    cy.request("/todos/completed")
+      .its("body")
+      .each((item) => expect(item.complete).to.equal(true));
   });
 });
 
