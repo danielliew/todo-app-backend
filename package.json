@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev server.ts",
+    "start": "node ./build/server.js",
+    "dev": "ts-node-dev ./src/server.ts",
+    "build": "tsc -b",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:chrome": "cypress run --browser chrome",
     "combine:report": "mochawesome-merge ./mochawesome-report/*.json -o index.json",
