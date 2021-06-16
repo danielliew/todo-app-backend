@@ -36,8 +36,10 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache-nmb.outputs.cache-hit != 'true'
+        run: npm install
+
+      - name: Compile and start app
         run: |
-          npm ci
           npm run build
           npm start & npx wait-on http://localhost:4000
 
