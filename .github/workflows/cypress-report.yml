@@ -34,11 +34,11 @@ jobs:
         with:
           node-version: "12.x"
 
-      - name: Install dependencies and verify cy
+      - name: Install dependencies
         if: steps.cache-nmb.outputs.cache-hit != 'true'
         run: |
           npm ci
-          $(npm bin)/cypress verify
+          npm run build
           npm start & npx wait-on http://localhost:4000
 
       - name: Run Cypress tests
