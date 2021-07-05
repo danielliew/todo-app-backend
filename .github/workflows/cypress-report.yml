@@ -24,9 +24,7 @@ jobs:
       - uses: actions/cache@v2
         id: cache-nmb
         with:
-          path: |
-            "**/node_modules"
-            "/github/home/.cache/Cypress"
+          path: "**/node_modules"
           key: ${{ runner.os }}-cy-backend-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Use Nodejs 12
