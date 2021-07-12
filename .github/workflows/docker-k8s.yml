@@ -29,8 +29,8 @@ jobs:
       - uses: Azure/aks-set-context@v1
         with:
           creds: '${{ secrets.AZURE_CREDENTIALS }}'
-          cluster-name: contoso
-          resource-group: contoso-rg
+          cluster-name: ytlTodo
+          resource-group: test-resources
           
       - uses: Azure/k8s-create-secret@v1
         with:
@@ -44,6 +44,6 @@ jobs:
           manifests: |
             todo-backend-app.yaml
           images: |
-            demo.azurecr.io/k8sdemo:${{ github.sha }}
+           ${{ secrets.REGISTRY_LOGIN_SERVER }}/backend-express:${{ github.sha }}
           imagepullsecrets: |
             todo-backend-express-k8s-secret
