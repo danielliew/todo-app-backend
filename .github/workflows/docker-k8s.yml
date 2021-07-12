@@ -1,0 +1,49 @@
+name: ACR AKS CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # checkout the repo
+      - name: "Checkout GitHub Action"
+        uses: actions/checkout@main
+
+      # checkout the repo
+      - uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+      - run: |
+          docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/backend-express:${{ github.sha }}
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/backend-express:${{ github.sha }}
+
+      # Set the target AKS cluster.
+      - uses: Azure/aks-set-context@v1
+        with:
+          creds: '${{ secrets.AZURE_CREDENTIALS }}'
+          cluster-name: contoso
+          resource-group: contoso-rg
+          
+      - uses: Azure/k8s-create-secret@v1
+        with:
+          container-registry-url: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          container-registry-username: ${{ secrets.ACR_USERNAME }}
+          container-registry-password: ${{ secrets.ACR_PASSWORD }}
+          secret-name: todo-backend-express-k8s-secret
+
+      - uses: Azure/k8s-deploy@v1.4
+        with:
+          manifests: |
+            todo-backend-app.yaml
+          images: |
+            demo.azurecr.io/k8sdemo:${{ github.sha }}
+          imagepullsecrets: |
+            todo-backend-express-k8s-secret

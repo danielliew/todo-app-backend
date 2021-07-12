@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ytl-todo-backend-express
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ytl-todo-backend-express
+  template:
+    metadata:
+      labels:
+        app: ytl-todo-backend-express
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: ytl-todo-backend-express
+        image: ytldevtest.azurecr.io/backend-express:0929ce8f1aa1b47c173e82a4955b42d1b83601a8
+        ports:
+        - containerPort: 4001
+        resources:
+          requests:
+            cpu: 250m
+          limits:
+            cpu: 500m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ytl-todo-backend-express
+spec:
+  type: ClusterIP
+  ports:
+  - port: 4001
+  selector:
+    app: ytl-todo-backend-express
