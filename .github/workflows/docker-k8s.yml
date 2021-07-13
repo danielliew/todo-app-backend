@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - CU-a62gk0_develop
   pull_request:
     branches:
       - main
@@ -31,7 +32,7 @@ jobs:
           creds: '${{ secrets.AZURE_CREDENTIALS }}'
           cluster-name: ytlTodo
           resource-group: test-resources
-          
+
       - uses: Azure/k8s-create-secret@v1
         with:
           container-registry-url: ${{ secrets.REGISTRY_LOGIN_SERVER }}

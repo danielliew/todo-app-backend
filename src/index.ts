@@ -11,7 +11,9 @@ const app: Application = express();
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => res.send(`<h1>${HEALTHY}</h1><p>Lorem ipsum</p>`));
+app.get("/", (req, res) =>
+  res.send(`<h1>${HEALTHY}</h1><p>Lorem ipsum this works!</p>`)
+);
 app.use("/todos", todos);
 
 export default app;
