@@ -8,6 +8,9 @@ on:
     branches:
       - main
       - develop
+    types:
+      [review_requested]
+
 jobs:
   sonarcloud:
     if: ${{ false }}

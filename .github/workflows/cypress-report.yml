@@ -11,9 +11,12 @@ on:
     branches:
       - main
       - develop
+    types:
+      [review_requested]
 
 jobs:
   cypress-test:
+    if: ${{ false }}
     name: Run on Chrome 83
     runs-on: ubuntu-latest
     container: cypress/browsers:node12.18.0-chrome83-ff77

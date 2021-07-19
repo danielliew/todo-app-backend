@@ -1,15 +1,12 @@
 name: ACR AKS CI
 on:
-  push:
-    branches:
-      - main
-      - CU-a62gk0_develop
   pull_request:
     branches:
       - main
 
 jobs:
   build:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       # checkout the repo
