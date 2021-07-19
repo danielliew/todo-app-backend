@@ -4,16 +4,15 @@ on:
     branches:
       - main
       - develop
-  pull_request:
+  pull_request_review:
     branches:
       - main
       - develop
     types:
-      [review_requested]
+      [submitted]
 
 jobs:
   sonarcloud:
-    if: ${{ false }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
