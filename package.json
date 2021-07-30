@@ -24,7 +24,7 @@
     "mochawesome": "^6.2.2",
     "mochawesome-merge": "^4.2.0",
     "mochawesome-report-generator": "^5.2.0",
-    "ts-node-dev": "^1.1.6"
+    "ts-node-dev": "^1.1.8"
   },
   "dependencies": {
     "cors": "^2.8.5",

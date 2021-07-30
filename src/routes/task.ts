@@ -1,0 +1,1 @@
+const task = () => false? " ":true? " A " : null
